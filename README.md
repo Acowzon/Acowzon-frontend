@@ -1,6 +1,6 @@
-# my-project
+# acowzon-frontend
 
-> A Vue.js project
+> Powered by Vue.js 
 
 ## Build Setup
 
