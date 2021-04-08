@@ -1,6 +1,10 @@
 import axios from 'axios'; // 引入axios
 
-axios.defaults.baseURL = 'http://localhost:8080';
+if (process.env.NODE_ENV == 'development') {    
+    axios.defaults.baseURL = 'http://localhost:8080/';
+} else if (process.env.NODE_ENV == 'production') {    
+    axios.defaults.baseURL = 'http://server.moeworkshop.com:8080/';
+}
 
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
 axios.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest';
