@@ -1,5 +1,6 @@
 <template>
   <div class="GoodsDetail">
+
     <el-container>
       <el-main>
         <el-row>
@@ -35,6 +36,7 @@
         </el-row>
       </el-main>
     </el-container>
+
   </div>
 </template>
 

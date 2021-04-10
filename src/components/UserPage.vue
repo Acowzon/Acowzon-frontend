@@ -185,132 +185,69 @@
             >
           </div>
         </el-dialog>
-        <center>
-          <div>
-            <p class="AccountNumberP aa">头&nbsp;&nbsp;&nbsp;像:</p>
-            <el-input
-              class="InputBox bb"
-              placeholder="头像："
-              v-model="userImg"
-              :disabled="true"
-            ></el-input>
-          </div>
-          <div>
-            <p class="AccountNumberP aa">昵&nbsp;&nbsp;&nbsp;称:</p>
-            <el-input
-              class="InputBox bb"
-              placeholder="昵称："
-              v-model="Nickname"
-              :disabled="true"
-            ></el-input>
-          </div>
-          <div>
-            <p class="AccountNumberP aa">姓&nbsp;&nbsp;&nbsp;名:</p>
-            <el-input
-              class="InputBox bb"
-              placeholder="姓名："
-              v-model="name"
-              :disabled="true"
-            ></el-input>
-          </div>
-          <div>
-            <p class="AccountNumberP aa">性&nbsp;&nbsp;&nbsp;别:</p>
-            <el-input
-              class="InputBox bb"
-              placeholder="性别："
-              v-model="sex"
-              :disabled="true"
-            ></el-input>
-          </div>
-          <div>
-            <p class="AccountNumberP aa">身&nbsp;&nbsp;&nbsp;份:</p>
-            <el-input
-              class="InputBox bb"
-              placeholder="身份："
-              v-model="status"
-              :disabled="true"
-            ></el-input>
-          </div>
-          <div>
-            <p class="AccountNumberP aa">密&nbsp;&nbsp;&nbsp;码:</p>
-            <el-input
-              class="InputBox bb"
-              placeholder="密码："
-              v-model="password"
-              :disabled="true"
-            ></el-input>
-          </div>
-          <!--div>
-                  <p class="AccountNumberP aa">地&nbsp;&nbsp;&nbsp;址:</p>
 
-                   <el-input class="InputBox bb" placeholder="地址：" v-model="Adress" :disabled="true"></el-input>
+        <!-- Substituted with GoodsDetail template -->
+        <el-main>
+                  <el-col
+                    :span="8"
+                    v-for="(o, index) in 2"
+                    :key="o"
+                    :offset="index > 0 ? 2 : 0"
+                  ></el-col>
+                  <el-card :body-style="{ padding: '0px' }">
+                    <h1 class="grid-content bg-purple-dark">{{ user.userId }}</h1>
+                    <el-row>
+                        <div>UserName：{{ user.userName }}</div>
+                    </el-row>
+                    <el-row>
+                          <div>Real Name：{{ user.userRealname }}</div>
+                    </el-row>
+                    <el-row>
+                          <div>Phone：{{ user.userPhone }}</div>
+                    </el-row>
+                    <el-row>
+                          <div>Email：{{ user.userEmail }}</div>
+                    </el-row>
+                    <el-row>
+                        <el-button
+                          type="text"
+                          class="button"
+                          v-on:click="jumpToMainPage()"
+                         >回到首页
+                        </el-button>
+                    </el-row>
+                  </el-card>
+          </el-main>
 
-                </div-->
-          <div>
-            <p class="AccountNumberP aa">生&nbsp;&nbsp;&nbsp;日:</p>
-            <el-input
-              class="InputBox bb"
-              placeholder="生日："
-              v-model="birthday"
-              :disabled="true"
-            ></el-input>
-          </div>
-          <div>
-            <p class="AccountNumberP aa">邮&nbsp;&nbsp;&nbsp;箱:</p>
-
-            <el-input
-              class="InputBox bb"
-              placeholder="邮箱："
-              v-model="Email"
-              :disabled="true"
-            ></el-input>
-          </div>
-          <div>
-            <p class="AccountNumberP aa">手&nbsp;&nbsp;&nbsp;机:</p>
-
-            <el-input
-              class="InputBox bb"
-              placeholder="手机："
-              v-model="Phone"
-              :disabled="true"
-            ></el-input>
-          </div>
-        </center>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {
-  name: "UserPage",
-  data() {
-    return {
-      userImg: "xxxxxxxxxxx.png",
-      Nickname: "user001",
-      name: "user",
-      sex: "男/女",
-      status: "卖家/买家",
-      password: "123456",
-      Adress: "x省x市x县x街道x号",
-      birthday: "x年x月x日",
-      Email: "xxx@xx.com",
-      Phone: "00000000000",
+import { showUserAccount } from "@/request/api";
 
-      dialogTableVisible: false,
-      dialogFormVisible: false,
-      formLabelWidth: "120px",
-      form: {
-        name: "",
-        region: "",
-        date1: "",
-        date2: "",
-        delivery: false,
-        type: [],
-        resource: "",
-        desc: "",
-      },
+export default {
+  name: "UserDetail",
+  data: function () {
+    return {
+      user: {},
     };
+  },
+  mounted: function () {
+    this.showUserAccount();
+  },
+  methods: {
+    showUserAccount: function () {
+      showUserAccount({
+        userId: this.$route.query.id,
+      }).then((response) => {
+        this.user = response.data;
+      });
+    },
+    jumpToMainPage(goodId) {
+       this.$router.push({ path: "BrowseGoods"});
+    },
   },
 };
 </script>

@@ -102,9 +102,9 @@ export default {
   },
   methods: {
     submitForm(formName) {
-      console.log(this.value1);
+      //console.log(this.value1);
       this.$refs[formName].validate((valid) => {
-        if (valid) {
+        /*if (valid) {
           alert(
             "Name:" +
               this.nameValidateForm.name +
@@ -112,16 +112,17 @@ export default {
               this.nameValidateForm.phonenumber +
               ";Password:" +
               this.nameValidateForm.password
-          );
+          );*/
           //跨域解决代码
           if (this.value1 == true) {
             //个人用户注册
             axios
               .post(
-                "/users/doLogin",
+                "/users/register",
                 {
-                  userID: this.nameValidateForm.name,
-                  password: this.name.password,
+                  userName: this.nameValidateForm.name,
+                  userType: 0,
+                  password: this.nameValidateForm.password,
                 },
                 {
                   baseURL: "http://localhost:8080/",
@@ -135,28 +136,15 @@ export default {
                 this.loginresult = response.data.data;
                 console.log(this.loginresult);
               });
-            /*
-                            axios.post("PersonalServer", [{
-                                'user_name': this.nameValidateForm.name,
-                                'user_phone': this.nameValidateForm.phonenumber,
-                                'user_pwd': this.nameValidateForm.password
-                            }]).then(re => {
-                                if (re.data.flag == 1) //在json文件中定义一个flag，注册成功即返回一；否则返回零
-                                {
-                                    alert("注册成功！")
-                                } else {
-                                    alert("注册失败！")
-                                }
-                            })
-                            */
+
           } else {
             //商家用户注册
             axios
-              .post("RetailerServer", [
+              .post("/users/register", [
                 {
-                  user_name: this.nameValidateForm.name,
-                  user_phone: this.nameValidateForm.phonenumber,
-                  user_pwd: this.nameValidateForm.password,
+                   userName: this.nameValidateForm.name,
+                   userType: 1,
+                   password: this.nameValidateForm.password,
                 },
               ])
               .then((re) => {
@@ -168,8 +156,6 @@ export default {
                 }
               });
           }
-          //rm={}；
-          //console.log(this.nameValidateForm.name);
         } else {
           console.log("error submit!!");
           return false;

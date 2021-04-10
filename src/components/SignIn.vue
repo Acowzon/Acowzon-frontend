@@ -1,100 +1,120 @@
 <template>
-  <div class="signin">
-    <div class="container">
-      <el-row :gutter="10">
-        <el-col :span="14" :offset="5">
-          <el-card shadow="always" class="login-container">
-            <h1 class="title">Welcome to Acowzon</h1>
-            <el-form :model="form" label-width="6em">
-              <el-form-item
-                label="姓名"
-                prop="name"
-                :rules="[{ required: true, message: '姓名不能为空' }]"
+  <div class="signup">
+    <el-row :gutter="40">
+      <!-- gutter 栅格间距 -->
+      <el-col :span="10" :offset="10">
+        <!-- span 栅格占的列数，offset是偏移列数 -->
+        <div class="grid-content"></div>
+      </el-col>
+    </el-row>
+
+    <el-row :gutter="100">
+      <!-- gutter 栅格间距 -->
+
+      <el-col :span="8" :offset="8">
+        <!-- span 栅格占的列数，offset是偏移列数 -->
+        <el-card shadow="always" style="background-color: #d5d9e5">
+          <h1>欢迎登录-Acowzon</h1>
+          <!--<el-button type="primary" icon="el-icon-right"
+                >切换至商家版</el-button
+              >-->
+
+          <el-divider></el-divider>
+
+          <el-form
+            :model="nameValidateForm"
+            ref="nameValidateForm"
+            label-width="100px"
+            class="demo-ruleForm"
+          >
+            <!-- 用户名 -->
+            <el-form-item
+              label="用户名"
+              prop="name"
+              :rules="[{ required: true, message: '用户名不能为空' }]"
+            >
+             <el-input
+                placeholder="请输入用户ID"
+                type="text"
+                v-model="nameValidateForm.useID"
+                autocomplete="off"
+             ></el-input>
+            </el-form-item>
+
+            <!-- 密码 -->
+            <el-form-item
+              label="密 码"
+              prop="password"
+              :rules="[{ required: true, message: '密码不能为空' }]"
+            >
+              <el-input
+                type="text"
+                placeholder="请输入密码"
+                v-model="nameValidateForm.password"
+                show-password
+              ></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button
+                type="primary"
+                @click="submitForm('nameValidateForm')"
+                style="background-color: #47484c"
+                >提交</el-button
               >
-                <el-input
-                  type="text"
-                  placeholder="请输入ID"
-                  v-model="form.name"
-                  auto-complete="off"
-                ></el-input>
-              </el-form-item>
-
-              <!--el-form-item label="昵称" prop="nikiName" :rules="[{ required : true, message: '昵称不能为空'}]">
-                            <el-input type="text" placeholder="请输入昵称" v-model="form.nikiName" auto-complete="off"></el-input>
-                        </el-form-item-->
-
-              <!--el-form-item label="性别">
-                            <el-radio v-model="form.gender" label="man">男</el-radio>
-                            <el-radio v-model="form.gender" label="woman">女</el-radio>
-                        </el-form-item-->
-
-              <!--el-form-item label="身份类型">
-                            <el-radio v-model="form.identity" label="sell">卖方</el-radio>
-                            <el-radio v-model="form.identity" label="buy">买方</el-radio>
-                        </el-form-item-->
-
-              <!--el-form-item label="收货地址" prop="positation" :rules="[{required: true, message: '收货地址不能为空'}]">
-                            <el-input type="text" placeholder="请输入收货地址" v-model="form.positation" auto-complete="off"></el-input>
-                        </el-form-item-->
-
-              <!--el-form-item label="生日" prop="birthday" :rules="[{required: true, message: '生日不能为空'}]">
-                            <el-input type="text" placeholder="请输入生日" v-model="form.birthday" auto-complete="off"></el-input>
-                        </el-form-item-->
-
-              <!--el-form-item label="邮箱" prop="mail" :rules="[{required: true, message:'邮箱不能为空'}]">
-                            <el-input type="text" placeholder="请输入邮箱" v-model="form.mail" auto-complete="off"></el-input>
-                        </el-form-item-->
-
-              <!--el-form-item label="手机号" prop="phoneNumber" :rules="[{required: true, message:'手机号不能为空'}]">
-                            <el-input type="text" placeholder="请输入手机号" v-model="form.phoneNumber" auto-complete="off"></el-input>
-                        </el-form-item-->
-
-              <el-form-item
-                label="密码"
-                prop="password"
-                :rules="[{ required: true, message: '密码不能为空' }]"
-              >
-                <el-input
-                  type="text"
-                  placeholder="请输入密码"
-                  v-model="form.password"
-                  auto-complete="off"
-                ></el-input>
-              </el-form-item>
-
-              <el-form-item>
-                <el-button type="primary" @click="submit()">登录</el-button>
-                <el-button @click="reset()">重置</el-button>
-              </el-form-item>
-            </el-form>
-          </el-card>
-        </el-col>
-      </el-row>
-    </div>
+              <el-button @click="resetForm('nameValidateForm')">重置</el-button>
+            </el-form-item>
+          </el-form>
+        </el-card>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
+
 <script>
+import { doLogin } from "@/request/api";
 export default {
   name: "SignIn",
   data() {
     return {
-      form: {
+      value1: true,
+      nameValidateForm: {
         name: "",
-        nikiName: "",
-        gender: "man",
-        identity: "sell",
-        positation: "",
-        birthday: "",
-        mail: "",
-        password: "",
-        phoneNumber: "",
+        password: ""
       },
     };
   },
   methods: {
-    reset() {},
-    submit() {},
-  }
-}
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+            axios
+              .post(
+                "/users/doLogin",
+                {
+                  userID: this.nameValidateForm.userID,
+                  password: this.nameValidateForm.password,
+                },
+                {
+                  baseURL: "http://localhost:8080/",
+                  headers: {
+                    "X-Requested-With": "XMLHttpRequest",
+                    "content-type": "application/json",
+                  },
+                }
+              )
+              .then((response) => {
+                this.loginresult = response.data.data;
+                console.log(this.loginresult);
+              });
+      });
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+    },
+    change() {
+      this.value1 = !this.value1;
+      console.log(this.value1);
+    },
+  },
+};
 </script>
