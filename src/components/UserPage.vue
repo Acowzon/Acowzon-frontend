@@ -8,12 +8,13 @@
               <p class="taskWord">
                 <el-link
                   icon="el-icon-house"
-                  href="https://element.eleme.io"
                   target="_blank"
                   type="info"
                   :underline="false"
-                  >首页</el-link
-                >
+                  >
+                  <router-link to="/BrowseGoods">Browse Goods</router-link>
+                  </el-link>
+
               </p>
             </div>
           </el-col>
@@ -77,10 +78,11 @@
           </p>
           <p class="layout">
             <el-link
-              href="https://element.eleme.io"
               target="_blank"
               icon="el-icon-user-solid"
-              >切换账号</el-link
+              >
+              <router-link to="/SignIn">切换账号</router-link>
+              </el-link
             >
           </p>
         </el-row>
@@ -218,7 +220,6 @@
                     </el-row>
                   </el-card>
           </el-main>
-
       </div>
     </div>
   </div>

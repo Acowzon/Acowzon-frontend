@@ -1,4 +1,6 @@
+
 <template>
+
   <div class="signup">
     <el-row :gutter="40">
       <!-- gutter 栅格间距 -->
@@ -42,7 +44,7 @@
               <el-input
                 placeholder="请输入用户名"
                 type="text"
-                v-model="nameValidateForm.name"
+                v-model="nameValidateForm.userName"
                 autocomplete="off"
               ></el-input>
             </el-form-item>
@@ -53,28 +55,26 @@
               <el-input
                 placeholder="请输入手机号"
                 type="text"
-                v-model="nameValidateForm.phonenumber"
+                v-model="nameValidateForm.userPhone"
                 autocomplete="off"
               ></el-input>
             </el-form-item>
-
             <!-- 密码 -->
             <el-form-item
               label="密 码"
               prop="password"
-              :rules="[{ required: true, message: '密码不能为空' }]"
             >
               <el-input
                 type="text"
                 placeholder="请输入密码"
-                v-model="nameValidateForm.password"
+                v-model="nameValidateForm.userPwd"
                 show-password
               ></el-input>
             </el-form-item>
             <el-form-item>
               <el-button
                 type="primary"
-                @click="submitForm('nameValidateForm')"
+                @click= "submitForm('nameValidateForm')"
                 style="background-color: #47484c"
                 >提交</el-button
               >
@@ -88,79 +88,62 @@
 </template>
 
 <script>
+
+import { register } from "@/request/api";
+import { getGoodsDetail } from "@/request/api";
+
 export default {
   name: "SignUp",
   data() {
     return {
       value1: true,
       nameValidateForm: {
-        name: "",
-        password: "",
-        phonenumber: "",
-      },
+        userName: "",
+        userPhone: "",
+        userPwd: ""
+      }
     };
   },
   methods: {
     submitForm(formName) {
-      //console.log(this.value1);
-      this.$refs[formName].validate((valid) => {
-        /*if (valid) {
-          alert(
-            "Name:" +
-              this.nameValidateForm.name +
-              ";Phonenumber:" +
-              this.nameValidateForm.phonenumber +
-              ";Password:" +
-              this.nameValidateForm.password
-          );*/
+          var mesg = JSON.stringify(this.nameValidateForm);
+          //alert(this.nameValidateForm.userName+" "+this.nameValidateForm.userPwd+"   "+this.nameValidateForm.phone);
+          console.log(mesg)
           //跨域解决代码
           if (this.value1 == true) {
+           /* console.log(this.nameValidateForm);
+            getGoodsDetail(this.nameValidateForm).then((response) => {
+        console.log(response);
+        //this.good = response.data;
+      })*/
             //个人用户注册
-            axios
-              .post(
-                "/users/register",
-                {
-                  userName: this.nameValidateForm.name,
-                  userType: 0,
-                  password: this.nameValidateForm.password,
-                },
-                {
-                  baseURL: "http://localhost:8080/",
-                  headers: {
-                    "X-Requested-With": "XMLHttpRequest",
-                    "content-type": "application/json",
-                  },
-                }
-              )
-              .then((response) => {
-                this.loginresult = response.data.data;
-                console.log(this.loginresult);
-              });
 
+            /*register(
+              {userName:this.nameValidateForm.userName,
+              userPwd:this.nameValidateForm.userPwd,
+              userPhone: this.nameValidateForm.userPhone
+              }
+            ).then((response) => {});*/
+            register(
+              {userName:this.nameValidateForm.userName,
+              userPwd:this.nameValidateForm.userPwd,
+              userPhone: this.nameValidateForm.userPhone,     
+              userRealname:"-"  ,   
+              userNickname:"-"  , 
+              userImage:"-"  ,  
+              userEmail:"-"  ,  
+              sex:"-" ,
+              userBirth:"1900-01-01",
+              userType:"1",
+              userAddressId:"-"   
+              }
+            ).then((response) => {});
           } else {
             //商家用户注册
-            axios
-              .post("/users/register", [
-                {
-                   userName: this.nameValidateForm.name,
-                   userType: 1,
-                   password: this.nameValidateForm.password,
-                },
-              ])
-              .then((re) => {
-                if (re.data.flag == 1) {
-                  //在json文件中定义一个flag，注册成功即返回一；否则返回零
-                  alert("注册成功！");
-                } else {
-                  alert("注册失败！");
-                }
-              });
+            register(
+
+              );
           }
-        } else {
-          console.log("error submit!!");
-          return false;
-        }
-      });
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();

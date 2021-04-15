@@ -36,7 +36,6 @@
         </el-row>
       </el-main>
     </el-container>
-
   </div>
 </template>
 
@@ -56,8 +55,9 @@ export default {
   methods: {
     getGoodsDetail: function () {
       getGoodsDetail({
-        goodsId: this.$route.query.id,
+        id: this.$route.query.id,
       }).then((response) => {
+        console.log(response);
         this.good = response.data;
       });
     },

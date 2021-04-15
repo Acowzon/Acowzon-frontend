@@ -64,6 +64,7 @@
               <el-button @click="resetForm('nameValidateForm')">重置</el-button>
             </el-form-item>
           </el-form>
+          <router-link to="/SignUp">没有账号？点此创建</router-link>
         </el-card>
       </el-col>
     </el-row>
@@ -103,7 +104,12 @@ export default {
                 }
               )
               .then((response) => {
-                this.loginresult = response.data.data;
+                result = response.data.status;
+                if(result.equals("error")){
+                  alert("登陆失败!用户ID或密码错误!");
+                }else{
+                  this.$router.push({ path: "GoodsDetail", query: { id: goodId } });
+                }
                 console.log(this.loginresult);
               });
       });

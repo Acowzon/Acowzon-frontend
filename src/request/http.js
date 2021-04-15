@@ -1,8 +1,9 @@
 import axios from 'axios'; // 引入axios
 
-if (process.env.NODE_ENV == 'development') {    
+if (process.env.NODE_ENV == 'development') {
+    //axios.defaults.baseURL = 'http://192.168.53.162:8080/';
     axios.defaults.baseURL = 'http://localhost:8080/';
-} else if (process.env.NODE_ENV == 'production') {    
+} else if (process.env.NODE_ENV == 'production') {
     axios.defaults.baseURL = 'http://server.moeworkshop.com:8080/';
 }
 

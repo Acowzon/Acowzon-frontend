@@ -10,37 +10,46 @@ import GoodsDetail from '@/components/GoodsDetail'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
-  routes: [
-    {
-      path: '/',
-      name: 'MainPage',
-      component: MainPage
-    },
-    {
-      path: '/SignIn',
-      name: 'SignIn',
-      component: SignIn
-    },
-    {
-      path: '/SignUp',
-      name: 'SignUp',
-      component: SignUp
-    },
-    {
-      path: '/UserPage',
-      name: 'UserPage',
-      component: UserPage
-    },
-    {
-      path: '/BrowseGoods',
-      name: 'BrowseGoods',
-      component: BrowseGoods
-    },
-    {
-      path: '/GoodsDetail',
-      name: 'GoodsDetail',
-      component: GoodsDetail
-    },
-  ]
+    mode: 'history',
+    routes: [{
+            path: '/',
+            name: 'MainPage',
+            component: MainPage
+        },
+        {
+            path: '/SignIn',
+            name: 'SignIn',
+            component: SignIn
+        },
+        {
+            path: '/SignUp',
+            name: 'SignUp',
+            component: SignUp
+        },
+        {
+            path: '/UserPage',
+            name: 'UserPage',
+            component: UserPage
+        },
+        {
+            path: '/BrowseGoods',
+            name: 'BrowseGoods',
+            component: BrowseGoods
+        },
+        {
+            path: '/GoodsDetail',
+            name: 'GoodsDetail',
+            component: GoodsDetail
+        },
+        {
+            path: '/OrderList',
+            name: 'OrderList',
+            component: OrderList
+        },
+        {
+            path: '/OrdeDetail',
+            name: 'OrdeDetail',
+            component: OrdeDetail
+        }
+    ]
 })
