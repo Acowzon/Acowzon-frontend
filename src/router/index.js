@@ -3,9 +3,11 @@ import Router from 'vue-router'
 import MainPage from '@/components/MainPage'
 import SignIn from '@/components/SignIn'
 import SignUp from '@/components/SignUp'
-import UserPage from '@/components/UserPage'
+import UserDetail from '@/components/UserDetail'
 import BrowseGoods from '@/components/BrowseGoods'
 import GoodsDetail from '@/components/GoodsDetail'
+import OrderDetail from '@/components/OrderDetail'
+import OrderList from '@/components/OrderList'
 
 Vue.use(Router)
 
@@ -27,9 +29,9 @@ export default new Router({
             component: SignUp
         },
         {
-            path: '/UserPage',
-            name: 'UserPage',
-            component: UserPage
+            path: '/UserDetail',
+            name: 'UserDetail',
+            component: UserDetail
         },
         {
             path: '/BrowseGoods',
@@ -47,9 +49,9 @@ export default new Router({
             component: OrderList
         },
         {
-            path: '/OrdeDetail',
-            name: 'OrdeDetail',
-            component: OrdeDetail
+            path: '/OrderDetail',
+            name: 'OrderDetail',
+            component: OrderDetail
         }
     ]
 })

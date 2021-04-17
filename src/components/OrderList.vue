@@ -1,6 +1,6 @@
 <template>
   <div name="OrderList">
-    <el-row>
+    <!--el-row>
       <el-col
         :span="8"
         v-for="(order, index) in orderList"
@@ -28,7 +28,7 @@
           </div>
         </el-card>
       </el-col>
-    </el-row>
+    </el-row-->
   </div>
 </template>
 

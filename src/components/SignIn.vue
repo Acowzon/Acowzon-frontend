@@ -14,10 +14,7 @@
       <el-col :span="8" :offset="8">
         <!-- span 栅格占的列数，offset是偏移列数 -->
         <el-card shadow="always" style="background-color: #d5d9e5">
-          <h1>欢迎登录-Acowzon</h1>
-          <!--<el-button type="primary" icon="el-icon-right"
-                >切换至商家版</el-button
-              >-->
+          <h1>Welcome to=> Acowzon</h1>
 
           <el-divider></el-divider>
 
@@ -36,7 +33,7 @@
              <el-input
                 placeholder="请输入用户ID"
                 type="text"
-                v-model="nameValidateForm.useID"
+                v-model="nameValidateForm.userName"
                 autocomplete="off"
              ></el-input>
             </el-form-item>
@@ -61,10 +58,10 @@
                 style="background-color: #47484c"
                 >提交</el-button
               >
-              <el-button @click="resetForm('nameValidateForm')">重置</el-button>
+              <el-button @click="resetForm('nameValidateForm')">reset</el-button>
             </el-form-item>
           </el-form>
-          <router-link to="/SignUp">没有账号？点此创建</router-link>
+          <router-link to="/SignUp">Not have account?Click here to register-></router-link>
         </el-card>
       </el-col>
     </el-row>
@@ -80,39 +77,29 @@ export default {
     return {
       value1: true,
       nameValidateForm: {
-        name: "",
+        userName: "",
         password: ""
       },
     };
   },
   methods: {
     submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
-            axios
-              .post(
-                "/users/doLogin",
-                {
-                  userID: this.nameValidateForm.userID,
-                  password: this.nameValidateForm.password,
-                },
-                {
-                  baseURL: "http://localhost:8080/",
-                  headers: {
-                    "X-Requested-With": "XMLHttpRequest",
-                    "content-type": "application/json",
-                  },
-                }
-              )
-              .then((response) => {
-                result = response.data.status;
-                if(result.equals("error")){
-                  alert("登陆失败!用户ID或密码错误!");
-                }else{
-                  this.$router.push({ path: "GoodsDetail", query: { id: goodId } });
-                }
-                console.log(this.loginresult);
-              });
-      });
+        var mesg = JSON.stringify(this.nameValidateForm);
+        console.log(mesg)
+        doLogin(
+           {  userName:this.nameValidateForm.userName,
+              password:this.nameValidateForm.password
+            }
+        ).then((response) => {
+              console.log('response:'+response.status);
+              if( response.status=="success"){
+                  alert("sign in success!");
+                  this.$router.push({ path: "BrowseGoods"});
+              }else{
+                  alert("sign in failed! Please check your account name and password.");
+              }
+              
+        });
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
