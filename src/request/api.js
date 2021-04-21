@@ -26,3 +26,5 @@ export const showUserAccount = data => post('user/detail', data);
 export const register = data => post('user/add', data);
 //用户登录
 export const doLogin = data => post('user/verify', data);
+
+export const updateUserInfo = data => post('user/update', data);
