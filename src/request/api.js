@@ -8,9 +8,17 @@ export const getGoodsDetail = data => post('goods/detail', data);
 
 export const listAllGoods = () => post('goods/list/all');
 
-export const listAllOrders = data => post('orders/orderList', data);
+export const uploadGood = data => post('goods/add', data);
 
-export const getOrderDetail = data => post('orders/orderDetail', data);
+export const purchaseGood = data => post('order/add', data);
+
+export const listAllOrders = data => post('order/list/byCustomer', data);
+
+export const getOrderDetail = data => post('order/detail', data);
+
+export const createOrder = data => post('order/add', data);
+
+export const deleteOrder = data => post('order/delete', data);
 
 //用户信息查看
 export const showUserAccount = data => post('user/detail', data);

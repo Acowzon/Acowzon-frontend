@@ -18,8 +18,12 @@
     <!--el-menu-item index="2-3">选项3</el-menu-item-->
   </el-submenu>
   <el-menu-item index="3" disabled>Shopping cart</el-menu-item>
-  <el-menu-item index="4" disabled><a href="/OrderList" target="_blank">My Order</a></el-menu-item>
+  <el-menu-item index="4" >My Order</el-menu-item>
+  <el-menu-item index="5" >Upload Goods</el-menu-item>
+  <el-menu-item index="6" >Browse Goods</el-menu-item>
 </el-menu>
+
+
     <h1>   </h1>
     <el-row>
       <el-col
@@ -55,7 +59,6 @@ export default {
   data: function () {
     return {
       goodList: [],
-      //activeIndex: '1',
       activeIndex2: '1'
     };
   },
@@ -76,9 +79,15 @@ export default {
         console.log(key);
         if(key=="2-1"){
            // userId 暂时未定义
-           this.$router.push({ path: "UserDetail", query: { id: "c0d7ff21-87fd-4304-83fa-d53e53fb3272" } });
+           this.$router.push({ path: "UserDetail", query: { id: "2b917481-32d7-482d-9a7d-d9472ddaa7dd" } });
         }else if(key == "2-2"){
             this.$router.push({ path: "SignIn"});
+        }else if(key == '4'){
+            this.$router.push( {path: "OrderList", query: { id: "2b917481-32d7-482d-9a7d-d9472ddaa7dd" }  } );
+        }else if(key == '5'){
+             this.$router.push( {path: "UploadGood"}  );
+        }else if(key == '6'){
+              this.$router.push( {path: "BrowseGoods"}  );
         }
     }
   },

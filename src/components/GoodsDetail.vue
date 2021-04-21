@@ -1,6 +1,29 @@
 <template>
   <div class="GoodsDetail">
 
+    <el-menu
+  :default-active="activeIndex2"
+  class="el-menu-demo"
+  mode="horizontal"
+  @select="handleSelect"
+  background-color="#545c64"
+  text-color="#fff"
+  active-text-color="#ffd04b">
+  <el-menu-item index="1"><a href="/">Main Page</a></el-menu-item>
+  <el-submenu index="2">
+    <template slot="title">About me</template>
+    <el-menu-item index="2-1">My profile</el-menu-item>
+    <el-menu-item index="2-2">Change account</el-menu-item>
+    <!--el-menu-item index="2-3">选项3</el-menu-item-->
+  </el-submenu>
+  <el-menu-item index="3" disabled>Shopping cart</el-menu-item>
+  <el-menu-item index="4" >My Order</el-menu-item>
+  <el-menu-item index="5" >Upload Goods</el-menu-item>
+  <el-menu-item index="6" >Browse Goods</el-menu-item>
+</el-menu>
+
+
+
     <el-container>
       <el-main>
         <el-row>
@@ -32,6 +55,15 @@
             <el-row>
               <div>{{ good.description }}</div>
             </el-row>
+            <el-row><div class="bottom clearfix">
+              <el-button
+                type="text"
+                class="button"
+                v-on:click="jumpToPurchase(good)"
+                >purchase
+              </el-button>
+            </div>
+            </el-row>
           </el-card>
         </el-row>
       </el-main>
@@ -41,12 +73,14 @@
 
 <script>
 import { getGoodsDetail } from "@/request/api";
+import { purchaseGood } from "@/request/api";
 
 export default {
   name: "GoodsDetail",
   data: function () {
     return {
       good: {},
+      activeIndex2: '1'
     };
   },
   mounted: function () {
@@ -61,6 +95,62 @@ export default {
         this.good = response.data;
       });
     },
-  },
+    jumpToPurchase(good){
+        purchaseGood(
+          {
+            items:
+            [
+              {goodsId:good.id,
+              goodsName:good.name,
+              imageUrl:"---",
+              price:good.price,
+              amount:"1"
+              }
+            ],
+            customerId:"2b917481-32d7-482d-9a7d-d9472ddaa7dd",
+            shopId:"73743b61-05ca-491e-84f1-aca92a0bd66d",
+            orderPrice : good.price,
+            originAddr:{
+              country:"China",
+              province:"Shanxi",
+              city:"Xian",
+              detail:"Xidian U"
+            },
+            destAddr:{
+              country:"China",
+              province:"Shanxi",
+              city:"Xian",
+              detail:"Xidian U"
+            },
+            orderStatus:"NEW",
+            paymentStatus:"WAITING",
+          }
+        ).then((response) => {
+          if(response.status == 'success'){
+            alert('Purchase success!');
+          }else{
+            alert('Purchase failed!');
+          }
+         // console.log(response);
+      })
+
+    },
+
+     handleSelect(key, keyPath) {
+        console.log(key);
+        if(key=="2-1"){
+           // userId 暂时未定义
+           this.$router.push({ path: "UserDetail", query: { id: "2b917481-32d7-482d-9a7d-d9472ddaa7dd" } });
+        }else if(key == "2-2"){
+            this.$router.push({ path: "SignIn"});
+        }else if(key == '4'){
+            this.$router.push( {path: "OrderList", query: { id: "2b917481-32d7-482d-9a7d-d9472ddaa7dd" }  } );
+        }else if(key == '5'){
+             this.$router.push( {path: "UploadGood"}  );
+        }else if(key == '6'){
+              this.$router.push( {path: "BrowseGoods"}  );
+        }
+    }
+  }
 };
 </script>

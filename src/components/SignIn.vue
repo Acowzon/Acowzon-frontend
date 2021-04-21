@@ -56,7 +56,7 @@
                 type="primary"
                 @click="submitForm('nameValidateForm')"
                 style="background-color: #47484c"
-                >提交</el-button
+                >go!</el-button
               >
               <el-button @click="resetForm('nameValidateForm')">reset</el-button>
             </el-form-item>

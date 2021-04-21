@@ -8,6 +8,7 @@ import BrowseGoods from '@/components/BrowseGoods'
 import GoodsDetail from '@/components/GoodsDetail'
 import OrderDetail from '@/components/OrderDetail'
 import OrderList from '@/components/OrderList'
+import UploadGood from '@/components/UploadGood'
 
 Vue.use(Router)
 
@@ -52,6 +53,11 @@ export default new Router({
             path: '/OrderDetail',
             name: 'OrderDetail',
             component: OrderDetail
+        },
+        {
+            path: '/UploadGood',
+            name: 'UploadGood',
+            component: UploadGood
         }
     ]
 })
