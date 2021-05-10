@@ -6,17 +6,17 @@ import router from './router'
 import ElementUI from 'element-ui'
 import VueRouter from 'vue-router'
 import 'element-ui/lib/theme-chalk/index.css'
-import axios from 'axios'
+import VueCookies from 'vue-cookies'
 
-Vue.config.productionTip = false;
-
+Vue.use(VueCookies)
 Vue.use(ElementUI);
 Vue.use(VueRouter);
 
+
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>'
+    el: '#app',
+    router,
+    components: { App },
+    template: '<App/>'
 });

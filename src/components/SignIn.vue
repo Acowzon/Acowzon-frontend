@@ -71,6 +71,9 @@
 
 <script>
 import { doLogin } from "@/request/api";
+import  { showUserAccount} from "@/request/api";
+
+
 export default {
   name: "SignIn",
   data() {
@@ -91,15 +94,18 @@ export default {
               password:this.nameValidateForm.password
             }
         ).then((response) => {
-              console.log('response:'+response.status);
+              //console.log(response.data)
               if( response.status=="success"){
                   alert("sign in success!");
+                  this.$cookies.set('UserName', this.nameValidateForm.userName,60*1);  
+                  this.$cookies.set('UserID',response.data,60*1);
                   this.$router.push({ path: "BrowseGoods"});
               }else{
                   alert("sign in failed! Please check your account name and password.");
               }
-              
+              //console.log('response:'+response.data);
         });
+
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();

@@ -14,9 +14,6 @@
         <router-link to="/SignUp">Sign up</router-link>
       </li>
       <li>
-        <router-link to="/UserDetail">User</router-link>
-      </li>
-      <li>
         <router-link to="/BrowseGoods">Browse Goods</router-link>
       </li>
     </ul>

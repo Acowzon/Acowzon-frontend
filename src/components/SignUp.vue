@@ -127,8 +127,8 @@ export default {
             ).then((response) => {
               console.log('response:'+response.status);
               if( response.status=="success"){
-                  alert("sign up success!");
-                  this.$router.push({ path: "BrowseGoods"});
+                  alert("sign up success! go to log in...");
+                  this.$router.push({ path: "SignIn"});
               }else{
                   alert("sign up failed!");
               }
@@ -151,8 +151,9 @@ export default {
             ).then((response) => {
               console.log('response:'+response.status);
               if( response.status=="success"){
-                  alert("sign up success!");
-                  this.$router.push({ path: "BrowseGoods"});
+                  alert("sign up success! go to log in...");
+
+                  this.$router.push({ path: "SignIn"});
               }else{
                   alert("sign up failed!");
               }

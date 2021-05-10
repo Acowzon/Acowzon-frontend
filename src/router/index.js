@@ -14,6 +14,16 @@ Vue.use(Router)
 
 export default new Router({
     mode: 'history',
+    /**beforeEach: ((to, from, next) => {
+        if (!this.$cookies.isKey('UserName') || !this.$cookies.isKey('UserID')) {
+            next({
+                path: '/SignIn'
+            })
+        } else {
+            next();
+        }
+
+    }),**/
     routes: [{
             path: '/',
             name: 'MainPage',

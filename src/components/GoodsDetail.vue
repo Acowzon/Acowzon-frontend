@@ -96,6 +96,15 @@ export default {
       });
     },
     jumpToPurchase(good){
+
+        if(!this.$cookies.isKey('UserName') || !this.$cookies.isKey('UserID')){
+          alert('Login expired, Please re-login');
+          this.$router.push({ path: "SignIn"});
+        }
+
+        var UserName = this.$cookies.get('UserName');
+        var UserID = this.$cookies.get('UserID');
+
         purchaseGood(
           {
             items:
@@ -107,7 +116,7 @@ export default {
               amount:"1"
               }
             ],
-            customerId:"2b917481-32d7-482d-9a7d-d9472ddaa7dd",
+            customerId:UserID,
             shopId:"73743b61-05ca-491e-84f1-aca92a0bd66d",
             orderPrice : good.price,
             originAddr:{
@@ -137,14 +146,21 @@ export default {
     },
 
      handleSelect(key, keyPath) {
-        console.log(key);
+       if(!this.$cookies.isKey('UserName') || !this.$cookies.isKey('UserID')){
+          alert('Login expired, Please re-login');
+          this.$router.push({ path: "SignIn"});
+        }
+
+        var UserName = this.$cookies.get('UserName');
+        var UserID = this.$cookies.get('UserID');
+        //console.log(key);
         if(key=="2-1"){
            // userId 暂时未定义
-           this.$router.push({ path: "UserDetail", query: { id: "2b917481-32d7-482d-9a7d-d9472ddaa7dd" } });
+           this.$router.push({ path: "UserDetail", query: { id: UserID } });
         }else if(key == "2-2"){
             this.$router.push({ path: "SignIn"});
         }else if(key == '4'){
-            this.$router.push( {path: "OrderList", query: { id: "2b917481-32d7-482d-9a7d-d9472ddaa7dd" }  } );
+            this.$router.push( {path: "OrderList", query: { id: UserID }  } );
         }else if(key == '5'){
              this.$router.push( {path: "UploadGood"}  );
         }else if(key == '6'){
