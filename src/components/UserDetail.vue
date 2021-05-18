@@ -3,7 +3,6 @@
 
     <el-container>
       <el-main>
-        
             <h1 class="grid-content bg-purple-dark">User Name :{{ user.userName }}</h1>
             <img :src="user.imageUrl" class="image" />
             <h></h>
@@ -44,7 +43,7 @@
                            type="text"
                             placeholder="userName"
                             v-model="updateForm.userName"
-                           
+
                             ></el-input>
                       </el-form-item>
 
@@ -56,7 +55,7 @@
                            type="text"
                             placeholder="user phone"
                             v-model="updateForm.tel"
-                           
+
                             ></el-input>
                       </el-form-item>
 
@@ -68,7 +67,7 @@
                            type="text"
                             placeholder="user email"
                             v-model="updateForm.email"
-                          
+
                             ></el-input>
                       </el-form-item>
 
@@ -84,18 +83,18 @@
                       <el-form-item label="add seller">
                         <el-switch v-model="updateForm.isseller"></el-switch>
                       </el-form-item>
-                      
+
 
                      <el-button @click="submitForm(updateForm)">submit</el-button>
                    </el-form>
-                  
+
                     <el-button slot="reference">click to modify</el-button>
                 </el-popover>
 
             </el-row>
       </el-main>
 
-    
+
     </el-container>
   </div>
 </template>
@@ -145,10 +144,10 @@ export default {
      submitForm(formName) {
         var mesg = JSON.stringify(this.updateForm);
         console.log('form info ',mesg)
-        
+
         updateUserInfo(
-           {  
-              id:this.user.id, 
+           {
+              id:this.user.id,
               userName:this.updateForm.userName,
               tel:this.updateForm.tel,
               email:this.updateForm.email,
@@ -178,11 +177,11 @@ export default {
                     //this.$router.push({ path: "UserDetail", query: { id: this.$cookies.get('UserID')} });
                     this.$router.go(0);
                   }
-                  
+
               }else{
                   alert("modify failed.");
               }
-              
+
         });
     },
   }

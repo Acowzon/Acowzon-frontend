@@ -6,7 +6,6 @@
         <pre><h2 style="font-family:Consolas;color:#4748a0;font-size:30px">   Acowzon</h2></pre>
         <!-- span 栅格占的列数，offset是偏移列数 -->
         <div class="grid-content"></div>
-        
       </el-col>
     </el-row>
 
@@ -148,7 +147,7 @@ export default {
               }else{
                   alert("sign up failed!");
               }
-              
+
             });
           } else {
             //商家用户注册
@@ -173,7 +172,7 @@ export default {
               }else{
                   alert("sign up failed!");
               }
-              
+
             });
           }
     },

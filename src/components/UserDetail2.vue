@@ -9,19 +9,19 @@
       </el-header>
 
       <el-main>
-          <el-card class = "box-card" > 
+          <el-card class = "box-card" >
             <div class="text">User Name :{{ user.userName }}</div>
           </el-card>
 
           <el-card class = "box-card" >
-            
+
             <div>
               <el-avatar src="user.imageUrl" class="image" ></el-avatar>
             </div>
           </el-card>
 
           <el-card class = "box-card" >
-            <el-row :gutter="40" class="text" >               
+            <el-row :gutter="40" class="text" >
                 <div><i class="el-icon-message"></i> E-mail : {{ user.email }}</div>
             </el-row>
           </el-card>
@@ -30,13 +30,13 @@
             <el-row :gutter="40" class="text">
                 <div><i class="el-icon-user"></i> Sex : {{ user.sex }}</div>
             </el-row>
-          </el-card>  
-            
-          <el-card class = "box-card" >  
+          </el-card>
+
+          <el-card class = "box-card" >
             <el-row :gutter="40" class="text">
                 <div><i class="el-icon-phone-outline"></i> Tel : {{ user.tel }}</div>
             </el-row>
-          </el-card> 
+          </el-card>
 
           <el-card class = "box-card" >
             <el-row :gutter="40" class="text">
@@ -66,7 +66,7 @@
                            type="text"
                             placeholder="userName"
                             v-model="updateForm.userName"
-                           
+
                             ></el-input>
                       </el-form-item>
 
@@ -78,7 +78,7 @@
                            type="text"
                             placeholder="user phone"
                             v-model="updateForm.tel"
-                           
+
                             ></el-input>
                       </el-form-item>
 
@@ -90,7 +90,7 @@
                            type="text"
                             placeholder="user email"
                             v-model="updateForm.email"
-                          
+
                             ></el-input>
                       </el-form-item>
 
@@ -109,18 +109,18 @@
                       <el-form-item label="to be seller">
                         <el-switch v-model="updateForm.isseller"></el-switch>
                       </el-form-item>
-                      
+
 
                      <el-button round type="primary" @click="submitForm(updateForm)">Submit</el-button>
                    </el-form>
-                  
+
                     <el-button  round type="info" size="medium" slot="reference">click to modify</el-button>
-              
+
                 </el-popover>
 
             </el-row>
-        
-   
+
+
       </el-main>
     </el-container>
   </div>
@@ -171,10 +171,10 @@ export default {
      submitForm(formName) {
         var mesg = JSON.stringify(this.updateForm);
         console.log('form info ',mesg)
-        
+
         updateUserInfo(
-           {  
-              id:this.user.id, 
+           {
+              id:this.user.id,
               userName:this.updateForm.userName,
               tel:this.updateForm.tel,
               email:this.updateForm.email,
@@ -204,11 +204,11 @@ export default {
                     //this.$router.push({ path: "UserDetail", query: { id: this.$cookies.get('UserID')} });
                     this.$router.go(0);
                   }
-                  
+
               }else{
                   alert("modify failed.");
               }
-              
+
         });
     },
   }
@@ -237,7 +237,7 @@ export default {
     background-color:#47484c;
   }
 
-  
+
   .box-card {
     width: 100;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);

@@ -102,6 +102,7 @@ export default {
       }
     };
   },
+
   methods: {
     submitForm(formName) {
           var mesg = JSON.stringify(this.nameValidateForm);
@@ -112,11 +113,11 @@ export default {
             register(
               {userName:this.nameValidateForm.userName,
               password:this.nameValidateForm.userPwd,
-              tel: this.nameValidateForm.userPhone,     
-              realName:"-"  ,   
-              nickName:"-"  , 
-              imageUrl:"-"  ,  
-              email:"-"  ,  
+              tel: this.nameValidateForm.userPhone,
+              realName:"-"  ,
+              nickName:"-"  ,
+              imageUrl:"-"  ,
+              email:"-"  ,
               sex:"SECRET" ,
               birthDay:"1900-01-01",
               userType:"1"
@@ -129,18 +130,18 @@ export default {
               }else{
                   alert("sign up failed!");
               }
-              
+
             });
           } else {
             //商家用户注册
              register(
               {userName:this.nameValidateForm.userName,
               password:this.nameValidateForm.userPwd,
-              tel: this.nameValidateForm.userPhone,     
-              realName:"-"  ,   
-              nickName:"-"  , 
-              imageUrl:"-"  ,  
-              email:"-"  ,  
+              tel: this.nameValidateForm.userPhone,
+              realName:"-"  ,
+              nickName:"-"  ,
+              imageUrl:"-"  ,
+              email:"-"  ,
               sex:"SECRET" ,
               birthDay:"1900-01-01",
               userType:"2"
@@ -153,7 +154,7 @@ export default {
               }else{
                   alert("sign up failed!");
               }
-              
+
             });
           }
     },

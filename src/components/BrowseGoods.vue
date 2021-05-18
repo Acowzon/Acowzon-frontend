@@ -61,7 +61,7 @@ export default {
     return {
       goodList: [],
       activeIndex2: '1',
-      
+
     };
   },
   mounted: function () {
@@ -77,6 +77,7 @@ export default {
     jumpToDetail(goodId) {
       this.$router.push({ path: "GoodsDetail", query: { id: goodId } });
     },
+
     handleSelect(key, keyPath) {
 
         if(!this.$cookies.isKey('UserName') || !this.$cookies.isKey('UserID')){
@@ -109,7 +110,7 @@ export default {
                   }
                 }
                );
-              
+
         }
     }
   },
