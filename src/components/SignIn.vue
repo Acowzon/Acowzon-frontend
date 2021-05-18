@@ -97,8 +97,8 @@ export default {
               //console.log(response.data)
               if( response.status=="success"){
                   alert("sign in success!");
-                  this.$cookies.set('UserName', this.nameValidateForm.userName,60*1);  
-                  this.$cookies.set('UserID',response.data,60*1);
+                  this.$cookies.set('UserName', this.nameValidateForm.userName,60*10);  
+                  this.$cookies.set('UserID',response.data,60*10);
                   this.$router.push({ path: "BrowseGoods"});
               }else{
                   alert("sign in failed! Please check your account name and password.");

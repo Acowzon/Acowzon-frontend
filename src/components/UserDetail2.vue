@@ -1,33 +1,55 @@
 <template>
   <div class="UserDetail">
 
-    <el-container>
+    <el-container >
+      <el-header>
+        <el-card class ="box-card-H">
+          <div  class ="textH">MY PROFILE</div>
+        </el-card>
+      </el-header>
+
       <el-main>
-        
-            <h1 class="grid-content bg-purple-dark">User Name :{{ user.userName }}</h1>
-            <img :src="user.imageUrl" class="image" />
-            <h></h>
-             <el-row>
-              <div>email : {{ user.email }}</div>
+          <el-card class = "box-card" > 
+            <div class="text">User Name :{{ user.userName }}</div>
+          </el-card>
+
+          <el-card class = "box-card" >
+            
+            <div>
+              <el-avatar src="user.imageUrl" class="image" ></el-avatar>
+            </div>
+          </el-card>
+
+          <el-card class = "box-card" >
+            <el-row :gutter="40" class="text" >               
+                <div><i class="el-icon-message"></i> E-mail : {{ user.email }}</div>
             </el-row>
-            <h></h>
-             <el-row>
-              <div>Sex: {{ user.sex }}</div>
+          </el-card>
+
+          <el-card class = "box-card" >
+            <el-row :gutter="40" class="text">
+                <div><i class="el-icon-user"></i> Sex : {{ user.sex }}</div>
             </el-row>
-            <h></h>
-            <el-row>
-              <div>phone: {{ user.tel }}</div>
+          </el-card>  
+            
+          <el-card class = "box-card" >  
+            <el-row :gutter="40" class="text">
+                <div><i class="el-icon-phone-outline"></i> Tel : {{ user.tel }}</div>
             </el-row>
-             <el-row>
-              <div>is seller: {{ user.seller }}</div>
+          </el-card> 
+
+          <el-card class = "box-card" >
+            <el-row :gutter="40" class="text">
+                <div><i class="el-icon-sold-out"></i> Is Seller : {{ user.seller }}</div>
             </el-row>
+          </el-card>
 
 
             <el-row>
                 <el-popover
                 placement="top-start"
                 title="User Info Modification"
-                width="200"
+                width="400"
                 trigger="click">
 
                   <el-form
@@ -72,7 +94,8 @@
                             ></el-input>
                       </el-form-item>
 
-                      gender: <el-select v-model="sexValue" placeholder="gender">
+                      <el-form-item label="gender">
+                        <el-select v-model="sexValue" placeholder="gender">
                         <el-option
                             v-for="item in options"
                             :key="item.value"
@@ -80,22 +103,25 @@
                             :value="item.value">
                         </el-option>
                       </el-select>
+                      </el-form-item>
 
-                      <el-form-item label="add seller">
+
+                      <el-form-item label="to be seller">
                         <el-switch v-model="updateForm.isseller"></el-switch>
                       </el-form-item>
                       
 
-                     <el-button @click="submitForm(updateForm)">submit</el-button>
+                     <el-button round type="primary" @click="submitForm(updateForm)">Submit</el-button>
                    </el-form>
                   
-                    <el-button slot="reference">click to modify</el-button>
+                    <el-button  round type="info" size="medium" slot="reference">click to modify</el-button>
+              
                 </el-popover>
 
             </el-row>
+        
+   
       </el-main>
-
-    
     </el-container>
   </div>
 </template>
@@ -188,3 +214,37 @@ export default {
   }
 };
 </script>
+
+
+
+
+<style>
+
+
+  .text {
+    font-size: 20px;
+  }
+
+  .textH {
+    font-size: 50px;
+    color :white;
+  }
+
+  .box-card-H{
+    width: 100;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    background-color:#47484c;
+  }
+
+  
+  .box-card {
+    width: 100;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    background-color:#d5d9e5;
+  }
+
+
+
+</style>

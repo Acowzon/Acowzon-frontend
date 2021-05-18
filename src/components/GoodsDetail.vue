@@ -162,7 +162,19 @@ export default {
         }else if(key == '4'){
             this.$router.push( {path: "OrderList", query: { id: UserID }  } );
         }else if(key == '5'){
-             this.$router.push( {path: "UploadGood"}  );
+             showUserAccount(
+                  {id:this.$cookies.get('UserID')}
+                ).then(
+                  (response) =>{
+                  //console.log(response);
+                  //this.$cookies.set('IsSeller',response.data.seller);
+                  if (response.data.seller==false){
+                    alert('You currently not a seller. Only certified sellers can upload goods.');
+                  }else{
+                      this.$router.push( {path: "UploadGood"}  );
+                  }
+                }
+               );
         }else if(key == '6'){
               this.$router.push( {path: "BrowseGoods"}  );
         }

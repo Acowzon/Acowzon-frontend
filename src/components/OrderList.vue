@@ -65,6 +65,7 @@
 <script>
 import { listAllOrders } from "@/request/api";
 import { deleteOrder } from "@/request/api";
+import  { showUserAccount} from "@/request/api";
 export default {
   name: "OrderList",
   data: function () {
@@ -105,7 +106,19 @@ export default {
         }else if(key == "2-2"){
             this.$router.push({ path: "SignIn"});
         }else if(key == '5'){
-             this.$router.push( {path: "UploadGood"}  );
+             showUserAccount(
+                  {id:this.$cookies.get('UserID')}
+                ).then(
+                  (response) =>{
+                  //console.log(response);
+                  //this.$cookies.set('IsSeller',response.data.seller);
+                  if (response.data.seller==false){
+                    alert('You currently not a seller. Only certified sellers can upload goods.');
+                  }else{
+                      this.$router.push( {path: "UploadGood"}  );
+                  }
+                }
+               );
         }else if(key == '6'){
               this.$router.push( {path: "BrowseGoods"}  );
         }
@@ -117,7 +130,8 @@ export default {
             }else{
               alert(' Deletion failed! ');
             }
-            this.$router.push( {path: "OrderList", query: { id: UserID }  } );
+            //this.$router.push( {path: "OrderList", query: { id: UserID }  } );
+            this.$router.go(0);
       });
     }
   },
