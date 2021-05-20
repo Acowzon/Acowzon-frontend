@@ -11,7 +11,6 @@ import OrderList from '@/components/OrderList'
 import UploadGood from '@/components/UploadGood'
 
 Vue.use(Router)
-
 export default new Router({
     mode: 'history',
     /**beforeEach: ((to, from, next) => {

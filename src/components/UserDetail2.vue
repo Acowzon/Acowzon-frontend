@@ -7,7 +7,6 @@
           <div  class ="textH">MY PROFILE</div>
         </el-card>
       </el-header>
-
       <el-main>
           <el-card class = "box-card" >
             <div class="text">User Name :{{ user.userName }}</div>

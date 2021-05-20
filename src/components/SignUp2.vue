@@ -11,7 +11,6 @@
 
     <el-row :gutter="100">
       <!-- gutter 栅格间距 -->
-
       <el-col :span="8" :offset="8">
         <!-- span 栅格占的列数，offset是偏移列数 -->
         <el-card class ="card" shadow="always">
