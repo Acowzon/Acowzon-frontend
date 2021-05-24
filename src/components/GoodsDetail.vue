@@ -16,7 +16,7 @@
     <el-menu-item index="2-2">Change account</el-menu-item>
     <!--el-menu-item index="2-3">选项3</el-menu-item-->
   </el-submenu>
-  <el-menu-item index="3" disabled>Shopping cart</el-menu-item>
+  <el-menu-item index="3" >Shopping cart</el-menu-item>
   <el-menu-item index="4" >My Order</el-menu-item>
   <el-menu-item index="5" >Upload Goods</el-menu-item>
   <el-menu-item index="6" >Browse Goods</el-menu-item>
@@ -59,8 +59,8 @@
               <el-button
                 type="text"
                 class="button"
-                v-on:click="jumpToPurchase(good)"
-                >purchase
+                v-on:click="addToShoppingTrolley(good)"
+                >Add In shopping cart
               </el-button>
             </div>
             </el-row>
@@ -95,6 +95,16 @@ export default {
         this.good = response.data;
       });
     },
+
+     addToShoppingTrolley: function (goodData) {
+          this.$message({
+                type: 'info',
+                message: '成功加入购物车！'
+              });
+          var goodIdInLocal = "goodId_" + goodData.id;
+          this.$set(this.good,'buyCount',1);
+          localStorage.setItem(goodIdInLocal, JSON.stringify(this.good));
+     },
     jumpToPurchase(good){
 
         if(!this.$cookies.isKey('UserName') || !this.$cookies.isKey('UserID')){
@@ -159,7 +169,11 @@ export default {
            this.$router.push({ path: "UserDetail", query: { id: UserID } });
         }else if(key == "2-2"){
             this.$router.push({ path: "SignIn"});
-        }else if(key == '4'){
+        }
+        else if(key == "3"){
+                    this.$router.push({ path: "ShoppingTrolley"});
+                }
+        else if(key == '4'){
             this.$router.push( {path: "OrderList", query: { id: UserID }  } );
         }else if(key == '5'){
              showUserAccount(

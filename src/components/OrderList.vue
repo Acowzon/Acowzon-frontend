@@ -16,7 +16,7 @@
     <el-menu-item index="2-2">Change account</el-menu-item>
     <!--el-menu-item index="2-3">选项3</el-menu-item-->
   </el-submenu>
-  <el-menu-item index="3" disabled>Shopping cart</el-menu-item>
+  <el-menu-item index="3" >Shopping cart</el-menu-item>
   <el-menu-item index="4" >My Order</el-menu-item>
   <el-menu-item index="5" >Upload Goods</el-menu-item>
   <el-menu-item index="6" >Browse Goods</el-menu-item>
@@ -81,7 +81,7 @@ export default {
     getAllOrders: function () {
       //console.log("orderid: ", this.$route.query.id);
       listAllOrders(
-        {id : this.$route.query.id} 
+        {id : this.$route.query.id}
       ).then((response) => {
         this.orderList = response.data;
         //console.log(response.data);
@@ -105,7 +105,11 @@ export default {
            this.$router.push({ path: "UserDetail", query: { id: UserID } });
         }else if(key == "2-2"){
             this.$router.push({ path: "SignIn"});
-        }else if(key == '5'){
+        }
+        else if(key == "3"){
+            this.$router.push({ path: "ShoppingTrolley"});
+        }
+        else if(key == '5'){
              showUserAccount(
                   {id:this.$cookies.get('UserID')}
                 ).then(

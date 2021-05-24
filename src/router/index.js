@@ -9,20 +9,12 @@ import GoodsDetail from '@/components/GoodsDetail'
 import OrderDetail from '@/components/OrderDetail'
 import OrderList from '@/components/OrderList'
 import UploadGood from '@/components/UploadGood'
+import ShoppingTrolley from '@/components/ShoppingTrolley'
 
 Vue.use(Router)
 export default new Router({
     mode: 'history',
-    /**beforeEach: ((to, from, next) => {
-        if (!this.$cookies.isKey('UserName') || !this.$cookies.isKey('UserID')) {
-            next({
-                path: '/SignIn'
-            })
-        } else {
-            next();
-        }
 
-    }),**/
     routes: [{
             path: '/',
             name: 'MainPage',
@@ -67,6 +59,11 @@ export default new Router({
             path: '/UploadGood',
             name: 'UploadGood',
             component: UploadGood
-        }
+        },
+        {
+            path: '/ShoppingTrolley',
+            name: 'ShoppingTrolley',
+            component: ShoppingTrolley
+        },
     ]
 })

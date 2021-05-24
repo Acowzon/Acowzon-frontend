@@ -16,7 +16,7 @@
     <el-menu-item index="2-2">Change account</el-menu-item>
     <!--el-menu-item index="2-3">选项3</el-menu-item-->
   </el-submenu>
-  <el-menu-item index="3" disabled>Shopping cart</el-menu-item>
+  <el-menu-item index="3" >Shopping cart</el-menu-item>
   <el-menu-item index="4" >My Order</el-menu-item>
   <el-menu-item index="5" >Upload Goods</el-menu-item>
   <el-menu-item index="6" >Browse Goods</el-menu-item>
@@ -36,7 +36,7 @@
             <el-row><span>orderStatus:{{ order.orderStatus }}</span></el-row>
             <el-row><span>paymentStatus:{{ order.paymentStatus }}</span></el-row>
             <el-row><span>createTime:{{ order.createTime }}</span></el-row>
-          </el-card> 
+          </el-card>
         </el-row>
         <el-row>
           <el-col
@@ -57,7 +57,7 @@
           </el-card>
           </el-col>
         </el-row>
-        
+
       </el-main>
     </el-container>
   </div>
@@ -97,7 +97,7 @@ export default {
     },
 
      handleSelect(key, keyPath) {
-       
+
         if(!this.$cookies.isKey('UserName') || !this.$cookies.isKey('UserID')){
           alert('Login expired, Please re-login');
           this.$router.push({ path: "SignIn"});
@@ -112,7 +112,11 @@ export default {
            this.$router.push({ path: "UserDetail", query: { id: UserID } });
         }else if(key == "2-2"){
             this.$router.push({ path: "SignIn"});
-        }else if(key == '4'){
+        }
+        else if(key == "3"){
+                    this.$router.push({ path: "ShoppingTrolley"});
+                }
+        else if(key == '4'){
             this.$router.push( {path: "OrderList", query: { id: UserID }  } );
         }else if(key == '5'){
              showUserAccount(
