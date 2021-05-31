@@ -1,9 +1,15 @@
 import axios from 'axios'; // 引入axios
 
+
+//axios.defaults.withCredentials = true; //让ajax携带cookie
+
+//Vue.prototype.$axios = axios;
+
 if (process.env.NODE_ENV == 'development') {
-    //axios.defaults.baseURL = 'http://localhost:8848/';
+    axios.defaults.baseURL = 'http://localhost:8080/';
     //axios.defaults.baseURL = 'http://www.syboomsy.ltd:8848/';
-    axios.defaults.baseURL = 'http://server.moeworkshop.com:8080/';
+    //axios.defaults.baseURL = 'http://server.moeworkshop.com:8080/';
+    //axios.defaults.baseURL = '/apis'
 } else if (process.env.NODE_ENV == 'production') {
     axios.defaults.baseURL = 'http://server.moeworkshop.com:8080/';
     //axios.defaults.baseURL = 'http://www.syboomsy.ltd:8848/';

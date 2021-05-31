@@ -146,6 +146,8 @@ export default {
                 this.$router.push({ path: "SignIn"});
             }else if(key == "3"){
                 this.$router.push({ path: "ShoppingTrolley"});
+            }else if(key == "4"){
+                this.$router.push({path: "OrderList", query: { id: UserID }  });
             }else if(key == '5'){
                  showUserAccount(
                       {id:this.$cookies.get('UserID')}
@@ -261,8 +263,10 @@ export default {
               };
 
               orderDetail.items = [id];
+
+              console.log(this.$cookies.get('UserID'),' id');
               // 客户id
-              orderDetail.customerId = "2b917481-32d7-482d-9a7d-d9472ddaa7dd";
+              orderDetail.customerId = this.$cookies.get('UserID');
               // 商家id
               orderDetail.shopId = this.goodData[j].shopId;
               // 商家名称
@@ -293,7 +297,7 @@ export default {
               // orderDetail.updateTime = curdate;
               this.orders = orderDetail;
               //post给后端
-              addOrder(JSON.stringify(this.orders)).then((response) => {
+              createOrder(JSON.stringify(this.orders)).then((response) => {
                 this.msg.push(response);
               });
             }

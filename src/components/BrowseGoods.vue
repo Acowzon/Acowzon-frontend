@@ -105,7 +105,7 @@ export default {
                   {id:this.$cookies.get('UserID')}
                 ).then(
                   (response) =>{
-                  //console.log(response);
+                  //console.log('response',response);
                   //this.$cookies.set('IsSeller',response.data.seller);
                   if (response.data.seller==false){
                     alert('You currently not a seller. Only certified sellers can upload goods.');

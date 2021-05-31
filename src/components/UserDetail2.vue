@@ -106,7 +106,14 @@
 
 
                       <el-form-item label="to be seller">
-                        <el-switch v-model="updateForm.isseller"></el-switch>
+                        <el-select v-model="isaSeller" placeholder="seller">
+                        <el-option
+                            v-for="item in sellerOptions"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                        </el-option>
+                      </el-select>
                       </el-form-item>
 
 
@@ -139,6 +146,13 @@ export default {
         tel: "",
         email: ""
       },
+      sellerOptions:[
+        {value: 'true',
+          label: 'True'},
+        {value: 'false',
+          label: 'False'}
+      ]
+      ,
       options: [{
           value: 'MALE',
           label: 'Male'
@@ -149,7 +163,8 @@ export default {
           value: 'SECRET',
           label: 'Secret'
         }],
-        sexValue: ''
+        sexValue: '',
+        isaSeller:'false'
     };
   },
   mounted: function () {
@@ -182,7 +197,7 @@ export default {
               nickName:"-",
               imageUrl:"-",
               birthDay:"1900-01-02",
-              isSeller:this.updateForm.isseller,
+              isSeller:this.isaSeller,
               addressSet:[
                 {
                   country:"-",

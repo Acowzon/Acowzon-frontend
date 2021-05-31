@@ -10,6 +10,15 @@ module.exports = {
         // Paths
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
+        /*proxyTable: {
+            '/apis': {
+                target: 'http://server.moeworkshop.com',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/apis': ''
+                }
+            }
+        },*/
         proxyTable: {},
 
         // Various Dev Server settings

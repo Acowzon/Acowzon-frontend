@@ -94,7 +94,8 @@ export default {
               password:this.nameValidateForm.password
             }
         ).then((response) => {
-              //console.log(response.data)
+              //console.log(response.data);
+              //console.log(this.$cookies.get('token'));
               if( response.status=="success"){
                   alert("sign in success!");
                   this.$cookies.set('UserName', this.nameValidateForm.userName,60*10);  

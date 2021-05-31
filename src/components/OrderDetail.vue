@@ -85,7 +85,7 @@ export default {
         id: this.$route.query.id
         }
       ).then((response) => {
-        //console.log('Order detail response ',response);
+        console.log('Order detail response ',response);
         this.order = response.data;
         this.items = this.order.items;
         //console.log('items: ',this.items);
