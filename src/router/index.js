@@ -10,6 +10,7 @@ import OrderDetail from '@/components/OrderDetail'
 import OrderList from '@/components/OrderList'
 import UploadGood from '@/components/UploadGood'
 import ShoppingTrolley from '@/components/ShoppingTrolley'
+import OrderList2 from '@/components/OrderList2'
 
 Vue.use(Router)
 export default new Router({
@@ -48,7 +49,7 @@ export default new Router({
         {
             path: '/OrderList',
             name: 'OrderList',
-            component: OrderList
+            component: OrderList2
         },
         {
             path: '/OrderDetail',

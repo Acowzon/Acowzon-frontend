@@ -28,3 +28,5 @@ export const register = data => post('user/add', data);
 export const doLogin = data => post('user/verify', data);
 
 export const updateUserInfo = data => post('user/update', data);
+
+export const updatePaymentStatus = data => post('order/update/paymentStatus', data);
