@@ -26,6 +26,14 @@
 
     <h1>   </h1>
     <el-row>
+        <el-col :span="8">
+        <el-input  v-model="searchKey" placeholder="Search for goods"></el-input>
+        <el-button @click="searchGoods()">go!</el-button>
+        </el-col>
+        
+    </el-row>
+     <h1>   </h1>
+    <el-row>
       <el-col
         :span="8"
         v-for="(good, index) in goodList"
@@ -55,25 +63,55 @@
 <script>
 import { listAllGoods } from "@/request/api";
 import  { showUserAccount} from "@/request/api";
+import  { searchForGoods} from "@/request/api";
 export default {
   name: "BrowseGoods",
   data: function () {
     return {
       goodList: [],
       activeIndex2: '1',
-
+      searchKey :''
     };
   },
   mounted: function () {
     this.getAllGoods();
   },
   methods: {
+
     getAllGoods: function () {
       listAllGoods().then((response) => {
         this.goodList = response.data;
         console.log(response);
       });
     },
+
+    searchGoods(){
+      if(this.searchKey!=''){
+        console.log(this.searchKey);
+          searchForGoods(
+            {'matchArr':{
+                "method":"MULTI",
+                "keyword":this.searchKey,
+                "range":{
+                  "field":"price",
+                  "min":0,
+                  "max":99999
+                  },
+                "sort":{
+                  "field":"price",
+                  "type":"ASC"
+                  }
+              },
+              "size":10,
+              "page":1
+            }
+          ).then((response) => {
+            console.log(response);
+            this.goodList = response.data;
+      });
+      }
+    },
+
     jumpToDetail(goodId) {
       this.$router.push({ path: "GoodsDetail", query: { id: goodId } });
     },

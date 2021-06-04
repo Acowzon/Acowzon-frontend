@@ -30,3 +30,5 @@ export const doLogin = data => post('user/verify', data);
 export const updateUserInfo = data => post('user/update', data);
 
 export const updatePaymentStatus = data => post('order/update/paymentStatus', data);
+
+export const searchForGoods = data => post('/search/goods', data);
